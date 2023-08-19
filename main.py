@@ -2,23 +2,18 @@ import funciones as f
 
 def main():
     
-    acciones = ['AMZN','AAPL','MSFT','TSLA','WMT']
-    precios_compra = [2800.6, 170.2,290.85, 980.1, 160.9]
-    cant_acciones = [100,50,70,200,500]
-    count = 0
-    ganancia_total = 0
-    dinero_invertido = 0
+    acciones = [
+    {'nombre': 'AMZN', 'precio_compra': 2800.6, 'cant_acciones': 100},
+    {'nombre': 'AAPL', 'precio_compra': 170.2, 'cant_acciones': 50},
+    {'nombre': 'MSFT', 'precio_compra': 290.85, 'cant_acciones': 70},
+    {'nombre': 'TSLA', 'precio_compra': 980.1, 'cant_acciones': 200},
+    {'nombre': 'WMT', 'precio_compra': 160.9, 'cant_acciones': 500}
+]
 
-    print('\n')
-    for i in acciones:
-        valor_actual = f.extraer_valor(i)
-        ganancia = round( ((valor_actual - (precios_compra[count]))*cant_acciones[count]) , 2) 
-        print(f'El valor de la acción {i} es de ${valor_actual} y tu compraste en ${precios_compra[count]}, por lo que tu ganancia es de: ${ganancia}')
-        ganancia_total = ganancia_total + ganancia
-        count = count + 1
+    f.calcular_ganancias(acciones)
 
-
-
+    
+"""
     for i in range (len(acciones)):
         dinero_invertido =(dinero_invertido + (precios_compra[i]*cant_acciones[i]))
 
@@ -29,7 +24,7 @@ def main():
     print(f'En resumen:\nTu dinero invertido es: ${dinero_invertido} CLP.\nAhora tienes: ${dinero_invertido+ganancia_total} CLP.\nTu ganancia total es de: ${round(ganancia_total, 2)} CLP.')
     print(f'Tu rentabilidad es de un {round(mi_rentabilidad, 3)}% .\n')
 
-
+"""
 
 if __name__ == "__main__":
     main()
