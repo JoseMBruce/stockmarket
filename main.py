@@ -3,42 +3,26 @@ import funciones as f
 def main():
     
     acciones = [
-    {'nombre': 'AMZN', 'precio_compra': 2800.6, 'cant_acciones': 100},
-    {'nombre': 'AAPL', 'precio_compra': 170.2, 'cant_acciones': 50},
-    {'nombre': 'MSFT', 'precio_compra': 290.85, 'cant_acciones': 70},
-    {'nombre': 'TSLA', 'precio_compra': 980.1, 'cant_acciones': 200},
-    {'nombre': 'WMT', 'precio_compra': 160.9, 'cant_acciones': 500}
-]
-
-    f.calcular_ganancias(acciones)
-
+    {'Nombre': 'AMZN', 'Precio de Compra': 2800.6, 'Cantidad Acciones': 100},
+    {'Nombre': 'AAPL', 'Precio de Compra': 170.2, 'Cantidad Acciones': 50},
+    {'Nombre': 'MSFT', 'Precio de Compra': 290.85, 'Cantidad Acciones': 70},
+    {'Nombre': 'TSLA', 'Precio de Compra': 980.1, 'Cantidad Acciones': 200},
+    {'Nombre': 'WMT', 'Precio de Compra': 160.9, 'Cantidad Acciones': 500}
+    ]
     
-"""
-    for i in range (len(acciones)):
-        dinero_invertido =(dinero_invertido + (precios_compra[i]*cant_acciones[i]))
+    df = f.pd.DataFrame(acciones)   
+    df['Valor en tiempo real'] = float('nan')
+    df['Porcentaje de Variación'] = float('nan') 
+    df['Hora de consulta'] = None 
 
+    # Llamar a la función para agregar el valor en tiempo real, variacion y hora de consulta
+    for index, row in df.iterrows():
+        valor_en_tiempo_real, hora_consulta = f.extraer_valor(row['Nombre'])
+        df.at[index, 'Valor en tiempo real'] = valor_en_tiempo_real
+        df.at[index, 'Porcentaje de Variación'] = f.calcula_variacion(row['Precio de Compra'],valor_en_tiempo_real)
+        df.at[index, 'Hora de consulta'] = hora_consulta
 
-    mi_rentabilidad = f.rentabilidad(dinero_invertido+ganancia_total, dinero_invertido)
-
-    print("------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    print(f'En resumen:\nTu dinero invertido es: ${dinero_invertido} CLP.\nAhora tienes: ${dinero_invertido+ganancia_total} CLP.\nTu ganancia total es de: ${round(ganancia_total, 2)} CLP.')
-    print(f'Tu rentabilidad es de un {round(mi_rentabilidad, 3)}% .\n')
-
-"""
+    print(df)
 
 if __name__ == "__main__":
     main()
-
-
-""""
-close_data = data['4. close']
-percentage_change = close_data.pct_change()
-print(percentage_change)
-
-last_change = percentage_change[-1]
-"""
-#if abs(last_change) > 0.0004:
-  #  aux= str(last_change)
-   # print('MSFT Alert:'+ aux)
-
-   
